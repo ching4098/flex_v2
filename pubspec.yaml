@@ -58,6 +58,7 @@ flutter:
     - assets/images/image_02.png
     - assets/images/logo.png
     - assets/images/flexlogo.png
+    - assets/images/gradientcolour.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

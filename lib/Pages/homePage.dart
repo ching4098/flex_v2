@@ -623,7 +623,7 @@ class _DashboardState extends State<Dashboard> {
               height: 270,
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18.0),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
                 image: DecorationImage(
                   image: AssetImage("assets/images/gradientcolour.jpg"),
                   fit: BoxFit.fill,
