@@ -153,7 +153,6 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin{
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FadeAnimation(1, ),
                   FadeAnimation(1, Text("Welcome",
                     style: TextStyle(fontFamily: 'Futura', color: Colors.white, fontSize: 50, fontWeight: FontWeight.bold),)),
                   SizedBox(height: 15,),
