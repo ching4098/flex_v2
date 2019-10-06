@@ -677,7 +677,7 @@ class _DashboardState extends State<Dashboard> {
 //                                  height: 16,
 //                                ),
                                 Text(
-                                  "a new way to flex up your life",
+                                  "A new way to flex up your life",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       color: Colors.white,
