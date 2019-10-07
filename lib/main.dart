@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin{
             Positioned(
               top: -50,
               left: 0,
-              child: FadeAnimation(1, Container(
+              child: FadeAnimation(1 Container(
                 width: width,
                 height: 400,
                 decoration: BoxDecoration(
