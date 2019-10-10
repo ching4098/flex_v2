@@ -1,16 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart' as prefix1;
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
 import 'package:flex_v2/data.dart';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 import 'package:flex_v2/Models/todo.dart';
 import 'package:flex_v2/Auth/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/firebase_database.dart' as prefix0;
+import 'package:flex_v2/Pages/profilePage.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.auth, this.userId, this.onSignedOut})
@@ -250,6 +249,12 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: <Widget>[
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      FlatButton.icon(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));} , icon: Icon(Icons.account_circle), label: Text('Profile'))
+                    ],
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       RaisedButton(
@@ -266,11 +271,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           _signOut();
                         },
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
                     ],
                   ),
                   Padding(
