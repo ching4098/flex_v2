@@ -256,36 +256,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   left: 12.0, right: 12.0, top: 30.0, bottom: 8.0),
               child: Column(
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Stack(
                     children: <Widget>[
-                      FlatButton.icon(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProfilePage()));
-                          },
-                          icon: Icon(Icons.account_circle),
-                          label: Text('Profile'))
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)),
-                        child: Text(
-                          'LOGOUT',
-                          style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Futura',
-                              fontSize: 20.0),
-                        ),
-                        onPressed: () {
-                          _signOut();
-                        },
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          FlatButton.icon(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfilePage()));
+                              },
+                              icon: Icon(Icons.account_circle),
+                              label: Text('Profile'))
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            child: Text(
+                              'LOGOUT',
+                              style: new TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Futura',
+                                  fontSize: 20.0),
+                            ),
+                            onPressed: () {
+                              _signOut();
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
