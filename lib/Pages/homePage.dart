@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           title: new Text("Verify your account"),
           content:
-          new Text("Link to verify account has been sent to your email"),
+              new Text("Link to verify account has been sent to your email"),
           actions: <Widget>[
             new OutlineButton(
               child: new Text("Dismiss"),
@@ -199,12 +199,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 new Expanded(
                     child: new TextField(
-                      controller: _textEditingController,
-                      autofocus: true,
-                      decoration: new InputDecoration(
-                        labelText: 'Add new todo',
-                      ),
-                    ))
+                  controller: _textEditingController,
+                  autofocus: true,
+                  decoration: new InputDecoration(
+                    labelText: 'Add new todo',
+                  ),
+                ))
               ],
             ),
             actions: <Widget>[
@@ -291,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
-                    ],
+                    ]
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -351,6 +351,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.0,
                       )),
+                  SizedBox(
+                    height: 80,
+                  ),
                 ],
               ),
             ),
@@ -445,7 +448,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => workout()),
+                              MaterialPageRoute(
+                                  builder: (context) => workout()),
                             );
                           },
                         ),
@@ -476,7 +480,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => rehydrated()),);
+                              MaterialPageRoute(
+                                  builder: (context) => rehydrated()),
+                            );
                           },
                         ),
                       ),
@@ -506,7 +512,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => sleep()),);
+                              MaterialPageRoute(builder: (context) => sleep()),
+                            );
                           },
                         ),
                       ),
@@ -532,12 +539,12 @@ class AnimatedButton extends StatefulWidget {
 
   AnimatedButton(
       {this.initialText,
-        this.finalText,
-        this.iconData,
-        this.iconSize,
-        this.animationDuration,
-        this.buttonStyle,
-        this.onTap});
+      this.finalText,
+      this.iconData,
+      this.iconSize,
+      this.animationDuration,
+      this.buttonStyle,
+      this.onTap});
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -592,7 +599,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
     return Material(
       elevation: widget.buttonStyle.elevation,
       borderRadius:
-      BorderRadius.all(Radius.circular(widget.buttonStyle.borderRadius)),
+          BorderRadius.all(Radius.circular(widget.buttonStyle.borderRadius)),
       child: InkWell(
         onTap: () {
           _controller.forward();
@@ -602,12 +609,12 @@ class _AnimatedButtonState extends State<AnimatedButton>
           height: widget.iconSize + 16,
           decoration: BoxDecoration(
             color: (_currentState == ButtonState.SHOW_ONLY_ICON ||
-                _currentState == ButtonState.SHOW_TEXT_ICON)
+                    _currentState == ButtonState.SHOW_TEXT_ICON)
                 ? widget.buttonStyle.secondaryColor
                 : widget.buttonStyle.primaryColor,
             border: Border.all(
                 color: (_currentState == ButtonState.SHOW_ONLY_ICON ||
-                    _currentState == ButtonState.SHOW_TEXT_ICON)
+                        _currentState == ButtonState.SHOW_TEXT_ICON)
                     ? widget.buttonStyle.primaryColor
                     : Colors.transparent),
             borderRadius: BorderRadius.all(
@@ -615,7 +622,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
           ),
           padding: EdgeInsets.symmetric(
             horizontal:
-            (_currentState == ButtonState.SHOW_ONLY_ICON) ? 16.0 : 48.0,
+                (_currentState == ButtonState.SHOW_ONLY_ICON) ? 16.0 : 48.0,
             vertical: 8.0,
           ),
           child: AnimatedSize(
@@ -626,16 +633,16 @@ class _AnimatedButtonState extends State<AnimatedButton>
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 (_currentState == ButtonState.SHOW_ONLY_ICON ||
-                    _currentState == ButtonState.SHOW_TEXT_ICON)
+                        _currentState == ButtonState.SHOW_TEXT_ICON)
                     ? Icon(
-                  widget.iconData,
-                  size: widget.iconSize,
-                  color: widget.buttonStyle.primaryColor,
-                )
+                        widget.iconData,
+                        size: widget.iconSize,
+                        color: widget.buttonStyle.primaryColor,
+                      )
                     : Container(),
                 SizedBox(
                   width:
-                  _currentState == ButtonState.SHOW_TEXT_ICON ? 30.0 : 0.0,
+                      _currentState == ButtonState.SHOW_TEXT_ICON ? 30.0 : 0.0,
                 ),
                 getTextWidget()
               ],
@@ -673,11 +680,11 @@ class ButtonStyle {
 
   ButtonStyle(
       {this.primaryColor,
-        this.secondaryColor,
-        this.initialTextStyle,
-        this.finalTextStyle,
-        this.elevation,
-        this.borderRadius});
+      this.secondaryColor,
+      this.initialTextStyle,
+      this.finalTextStyle,
+      this.elevation,
+      this.borderRadius});
 }
 
 enum ButtonState { SHOW_ONLY_TEXT, SHOW_ONLY_ICON, SHOW_TEXT_ICON }
@@ -742,6 +749,28 @@ class eat extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 90.0, top: 200.0),
+                child: RaisedButton(
+                  color: Colors.teal[200],
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Text("Done",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      )),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => congrats()),
+                    );
+                  },
                 ),
               ),
             ],
@@ -814,6 +843,28 @@ class study extends StatelessWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 90.0, top: 200.0),
+                child: RaisedButton(
+                  color: Colors.teal[200],
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Text("Done",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      )),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => congrats()),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ],
@@ -882,6 +933,28 @@ class workout extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 90.0, top: 200.0),
+                child: RaisedButton(
+                  color: Colors.teal[200],
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Text("Done",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      )),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => congrats()),
+                    );
+                  },
                 ),
               ),
             ],
@@ -954,6 +1027,28 @@ class rehydrated extends StatelessWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 90.0, top: 200.0),
+                child: RaisedButton(
+                  color: Colors.teal[200],
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Text("Done",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      )),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => congrats()),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ],
@@ -1024,10 +1119,72 @@ class sleep extends StatelessWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 90.0, top: 200.0),
+                child: RaisedButton(
+                  color: Colors.teal[200],
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Text("Done",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      )),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => congrats()),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+
+class congrats extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body:Stack(
+        children: <Widget>[
+          Container(
+            child: Image.asset(
+              "assets/images/congratulation.png",
+              fit: BoxFit.contain,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 160.0, top: 650.0),
+            child: RaisedButton(
+              color: Colors.teal[200],
+              padding: EdgeInsets.symmetric(
+                  horizontal: 32.0, vertical: 16.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Text("Continue",
+                  style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHomePage()),
+                );
+              },
+            ),
+          ),
+        ],
+      )
     );
   }
 }
