@@ -1,3 +1,4 @@
+import 'package:flex_v2/data.dart' as prefix1;
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
@@ -55,7 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
         .orderByChild("userId")
         .equalTo(widget.userId);
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(_onEntryAdded);
-    _onTodoChangedSubscription = _todoQuery.onChildChanged.listen(_onEntryChanged);
+    _onTodoChangedSubscription =
+        _todoQuery.onChildChanged.listen(_onEntryChanged);
   }
 
   void _checkEmailVerification() async {
@@ -65,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _resentVerifyEmail(){
+  void _resentVerifyEmail() {
     widget.auth.sendEmailVerification();
     _showVerifyEmailSentDialog();
   }
@@ -91,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             new OutlineButton(
               child: new Text("Dismiss"),
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -112,11 +115,13 @@ class _MyHomePageState extends State<MyHomePage> {
             borderRadius: BorderRadius.circular(16.0),
           ),
           title: new Text("Verify your account"),
-          content: new Text("Link to verify account has been sent to your email"),
+          content:
+          new Text("Link to verify account has been sent to your email"),
           actions: <Widget>[
             new OutlineButton(
               child: new Text("Dismiss"),
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -140,7 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     setState(() {
-      _todoList[_todoList.indexOf(oldEntry)] = Todo.fromSnapshot(event.snapshot);
+      _todoList[_todoList.indexOf(oldEntry)] =
+          Todo.fromSnapshot(event.snapshot);
     });
   }
 
@@ -161,13 +167,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _addNewTodo(String todoItem) {
     if (todoItem.length > 0) {
-
       Todo todo = new Todo(todoItem.toString(), widget.userId, false);
       _database.reference().child("todo").push().set(todo.toJson());
     }
   }
 
-  _updateTodo(Todo todo){
+  _updateTodo(Todo todo) {
     //Toggle completed
     todo.completed = !todo.completed;
     if (todo != null) {
@@ -192,13 +197,14 @@ class _MyHomePageState extends State<MyHomePage> {
           return AlertDialog(
             content: new Row(
               children: <Widget>[
-                new Expanded(child: new TextField(
-                  controller: _textEditingController,
-                  autofocus: true,
-                  decoration: new InputDecoration(
-                    labelText: 'Add new todo',
-                  ),
-                ))
+                new Expanded(
+                    child: new TextField(
+                      controller: _textEditingController,
+                      autofocus: true,
+                      decoration: new InputDecoration(
+                        labelText: 'Add new todo',
+                      ),
+                    ))
               ],
             ),
             actions: <Widget>[
@@ -215,9 +221,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   })
             ],
           );
-        }
-    );
+        });
   }
+
   @override
   Widget build(BuildContext context) {
     PageController controller = PageController(
@@ -230,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     return Scaffold(
-      backgroundColor: Color(0xFFFAFAFA),
+      backgroundColor: Colors.blueGrey[50],
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -238,7 +244,9 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 270,
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
                 image: DecorationImage(
                   image: AssetImage("assets/images/gradientcolour.jpg"),
                   fit: BoxFit.fill,
@@ -251,7 +259,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      FlatButton.icon(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));} , icon: Icon(Icons.account_circle), label: Text('Profile'))
+                      FlatButton.icon(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfilePage()));
+                          },
+                          icon: Icon(Icons.account_circle),
+                          label: Text('Profile'))
                     ],
                   ),
                   Row(
@@ -315,6 +331,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(
@@ -331,161 +350,169 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Stack(
-              children: <Widget>[
-                CardScrollWidget(currentPage),
-                Positioned.fill(
-                    child: PageView.builder(
-                      itemCount: images.length,
-                      controller: controller,
-                      reverse: true,
-                      itemBuilder: (context, index) {
-                        return Container();
-                      },
-                    ))
-              ],
+            Container(
+              height: 350.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 250.0,
+                        margin: new EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Image.asset(
+                          "assets/images/eat.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 238.0),
+                        child: RaisedButton(
+                          color: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 22.0, vertical: 6.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text("Learn More",
+                              style: TextStyle(color: Colors.black)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => eat()),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 250.0,
+                        margin: new EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Image.asset(
+                          "assets/images/study.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 238.0),
+                        child: RaisedButton(
+                          color: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 22.0, vertical: 6.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text("Learn More",
+                              style: TextStyle(color: Colors.black)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => study()),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 250.0,
+                        margin: new EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Image.asset(
+                          "assets/images/workout.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 238.0),
+                        child: RaisedButton(
+                          color: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 22.0, vertical: 6.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text("Learn More",
+                              style: TextStyle(color: Colors.black)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => workout()),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 250.0,
+                        margin: new EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Image.asset(
+                          "assets/images/rehydrated.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 238.0),
+                        child: RaisedButton(
+                          color: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 22.0, vertical: 6.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text("Learn More",
+                              style: TextStyle(color: Colors.black)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => rehydrated()),);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 250.0,
+                        margin: new EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Image.asset(
+                          "assets/images/sleep.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 238.0),
+                        child: RaisedButton(
+                          color: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 22.0, vertical: 6.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text("Learn More",
+                              style: TextStyle(color: Colors.black)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => sleep()),);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CardScrollWidget extends StatelessWidget {
-  var currentPage;
-  var padding = 20.0;
-  var verticalInset = 20.0;
-
-  CardScrollWidget(this.currentPage);
-
-  @override
-  Widget build(BuildContext context) {
-    return new AspectRatio(
-      aspectRatio: widgetAspectRatio,
-      child: LayoutBuilder(
-        builder: (context, contraints) {
-          var width = contraints.maxWidth;
-          var height = contraints.maxHeight;
-
-          var safeWidth = width - 2 * padding;
-          var safeHeight = height - 2 * padding;
-
-          var heightOfPrimaryCard = safeHeight;
-          var widthOfPrimaryCard = heightOfPrimaryCard * cardAspectRatio;
-
-          var primaryCardLeft = safeWidth - widthOfPrimaryCard;
-          var horizontalInset = primaryCardLeft / 2;
-
-          List<Widget> cardList = new List();
-
-          for (var i = 0; i < images.length; i++) {
-            var delta = i - currentPage;
-            bool isOnRight = delta > 0;
-
-            var start = padding +
-                max(
-                    primaryCardLeft -
-                        horizontalInset * -delta * (isOnRight ? 15 : 1),
-                    0.0);
-
-            var cardItem = Positioned.directional(
-              top: padding + verticalInset * max(-delta, 0.0),
-              bottom: padding + verticalInset * max(-delta, 0.0),
-              start: start,
-              textDirection: TextDirection.rtl,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black12,
-                          offset: Offset(3.0, 6.0),
-                          blurRadius: 10.0)
-                    ],
-                  ),
-                  child: AspectRatio(
-                      aspectRatio: cardAspectRatio,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: <Widget>[
-                          Image.asset(images[i], fit: BoxFit.cover),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16.0, vertical: 8.0),
-                                  child: Text(title[i],
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 40.0,
-//                                          fontStyle: FontStyle.,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Helvetica Neue")),
-                                ),
-                                SizedBox(height: 10.0),
-                                new RaisedButton(
-                                  padding: const EdgeInsets.all(8.0),
-                                  textColor: Colors.white,
-                                  color: Colors.blue,
-                                  onPressed: (){
-                                    AnimatedButton();
-                                  },
-                                  child: new Text("Complete"),
-                                ),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      new BorderRadius.circular(30.0)),
-                                  child: Text(
-                                    'learn more',
-                                    style: new TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Futura',
-                                        fontSize: 20.0),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => (Scaffold(
-                                            body: Container(
-                                              child: Padding(
-                                                child: Text(text[i],
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 40.0,
-//                                          fontStyle: Font    Style.,
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        fontFamily:
-                                                        "Helvetica Neue")),
-                                              ),
-                                            ),
-                                          )),
-                                        ));
-                                  },
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ),
-            );
-            cardList.add(cardItem);
-          }
-          return Stack(
-            children: cardList,
-          );
-        },
       ),
     );
   }
@@ -505,7 +532,8 @@ class AnimatedButton extends StatefulWidget {
         this.iconData,
         this.iconSize,
         this.animationDuration,
-        this.buttonStyle, this.onTap});
+        this.buttonStyle,
+        this.onTap});
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -522,7 +550,8 @@ class _AnimatedButtonState extends State<AnimatedButton>
   void initState() {
     super.initState();
     _currentState = ButtonState.SHOW_ONLY_TEXT;
-    _smallDuration = Duration(milliseconds: (widget.animationDuration.inMilliseconds * 0.2).round());
+    _smallDuration = Duration(
+        milliseconds: (widget.animationDuration.inMilliseconds * 0.2).round());
     _controller =
         AnimationController(vsync: this, duration: widget.animationDuration);
     _controller.addListener(() {
@@ -544,7 +573,8 @@ class _AnimatedButtonState extends State<AnimatedButton>
       }
     });
 
-    _scaleFinalTextAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _scaleFinalTextAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
   }
 
   @override
@@ -600,7 +630,8 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 )
                     : Container(),
                 SizedBox(
-                  width: _currentState == ButtonState.SHOW_TEXT_ICON ? 30.0 : 0.0,
+                  width:
+                  _currentState == ButtonState.SHOW_TEXT_ICON ? 30.0 : 0.0,
                 ),
                 getTextWidget()
               ],
@@ -646,3 +677,353 @@ class ButtonStyle {
 }
 
 enum ButtonState { SHOW_ONLY_TEXT, SHOW_ONLY_ICON, SHOW_TEXT_ICON }
+
+class eat extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    double c_width = MediaQuery.of(context).size.width * 0.8;
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+      body: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 260.0, top: 40.0),
+                child: IconButton(
+                  icon: new Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, top: 40.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text("Breakfast",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 46.0,
+                        fontFamily: "HelveticaNeue",
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: c_width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 80.0, top: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                            "Breakfast – The Most Important Meal of The Day. A day starts best with a filled tummy! Experience comparably different mornings with good breakfast meals with FLEX buddies, friends, and families. Suggested breakfast foods range from a simple sunny side up to glorious chicken & waffles. What are you waiting for? Have your breakfast now and complete your daily FLEX task!",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontFamily: "HelveticaNeue",
+                              letterSpacing: 1.0,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class study extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    double c_width = MediaQuery.of(context).size.width * 0.8;
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+      body: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 260.0, top: 40.0),
+                child: IconButton(
+                  icon: new Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, top: 40.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text("Book Binging",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 46.0,
+                        fontFamily: "HelveticaNeue",
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: c_width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 80.0, top: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                            "Book Binging – Its Like Netflix But Better A few pages of a book per day is enough to account for a week’s worth of learning! Have a good read with some light on your bed or even on the good ol’ coffee table. Binging books rather than Netflix because a novel is only as fun as your wild and magical imagination, get your mind stimulated with just a few minutes of seamless reading and complete your FLEX task now!",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontFamily: "HelveticaNeue",
+                              letterSpacing: 1.0,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class workout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    double c_width = MediaQuery.of(context).size.width * 0.8;
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+      body: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 260.0, top: 40.0),
+                child: IconButton(
+                  icon: new Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, top: 40.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text("Jog On",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 46.0,
+                        fontFamily: "HelveticaNeue",
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: c_width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 80.0, top: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                            "Have a great morning’s jog with FLEX! A morning is the best filled with energy, friends, and the morning sunrise view. Experience extraordinarily wonderful mornings with FLEX buddies, friends, and families. Get your jog on today! But do remember to get yourself a comfortable pair of trainers for maximum enjoyment and for your own safety. Hit the start button and start your daily JOG ON routine now!",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontFamily: "HelveticaNeue",
+                              letterSpacing: 1.0,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class rehydrated extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    double c_width = MediaQuery.of(context).size.width * 0.8;
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+      body: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 260.0, top: 40.0),
+                child: IconButton(
+                  icon: new Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, top: 40.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text("Rehydrated",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 46.0,
+                        fontFamily: "HelveticaNeue",
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: c_width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 80.0, top: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                            "Rehydrate – The Bread and Butter of Maintaining Good Health A cup of water is important for maintaining your body temperature, keeping your skin hydrated and also your mind fresh for your activities and challenges throughout the day. FLEX is here to remind you to get your daily serving of 8 cups of water per day so you won’t dry out like the Sahara Desert. Have a cup of water and complete your daily FLEX task now! ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontFamily: "HelveticaNeue",
+                              letterSpacing: 1.0,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class sleep extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    double c_width = MediaQuery.of(context).size.width * 0.8;
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+      body: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 260.0, top: 40.0),
+                child: IconButton(
+                  icon: new Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, top: 40.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text("Sleep In",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 46.0,
+                        fontFamily: "HelveticaNeue",
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: c_width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 80.0, top: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                            "Sleeping In – A Pure Enjoyment of Life Chill yourself out, calm yourself down, rest your soul and let your comfy bed do the rest. Recommended once a week, on a weekend especially to serve as a reward for your hard work done during the busy weekdays. Have some background music on and sleep till your body realises it has enough rest and wakes you up. Snuggle up in your warm blanket and complete your FLEX task now!",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontFamily: "HelveticaNeue",
+                              letterSpacing: 1.0,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
